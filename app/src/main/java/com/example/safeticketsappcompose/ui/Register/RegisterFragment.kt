@@ -23,6 +23,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.ComposeView
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
+import androidx.navigation.fragment.findNavController
 import com.example.safeticketsappcompose.R
 
 class RegisterFragment : Fragment() {
@@ -106,9 +107,9 @@ class RegisterFragment : Fragment() {
                     keyboardType = KeyboardType.Password
                 )
                 CustomStyledTextField(
-                    value = password,
-                    onValueChange = { password = it },
-                    placeholder = "Пароль",
+                    value = rePassword,
+                    onValueChange = { rePassword = it },
+                    placeholder = "Повторите пароль",
                     modifier = Modifier
                         .width(450.dp)
                         .padding(vertical = 10.dp),
@@ -116,7 +117,7 @@ class RegisterFragment : Fragment() {
                 )
 
 
-                Button(onClick = { /* Действие при нажатии кнопки авторизации */ }) {
+                Button(onClick = { findNavController().navigate(R.id.login_fragment) }) {
                     Text(text = "Register")
                 }
 
