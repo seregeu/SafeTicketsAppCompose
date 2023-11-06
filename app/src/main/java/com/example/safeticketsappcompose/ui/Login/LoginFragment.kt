@@ -20,6 +20,7 @@ import androidx.compose.ui.platform.ComposeView
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import androidx.fragment.app.Fragment
+import androidx.navigation.NavOptions
 import androidx.navigation.fragment.findNavController
 import com.example.safeticketsappcompose.R
 
@@ -65,19 +66,28 @@ class LoginFragment : Fragment() {
                     keyboardType = KeyboardType.Password
                 )
 
-                Button(onClick = { /* Действие при нажатии кнопки авторизации */ }) {
-                    Text(text = "Log In")
+                Button(onClick = {
+                    findNavController().navigate(
+                        resId = R.id.searchFragment2,
+                        args = null,
+                        navOptions = NavOptions.Builder()
+                            .setPopUpTo(R.id.login_fragment, true)
+                            .build(),
+                        navigatorExtras = null
+                    )
+                }) {
+                    Text(text = "Войти")
                 }
 
 
                 Button(
-                    onClick = { /* Действие при нажатии кнопки для регистрации */
+                    onClick = {
                         findNavController().navigate(R.id.registerFragment)
                     },
                     colors = ButtonDefaults.buttonColors(containerColor = Color.Transparent)
                 ) {
                     Text(
-                        text = "Don't have an account?",
+                        text = "У Вас еще нет аккаунта?",
                         color = Color.LightGray
                     )
                 }
