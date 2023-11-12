@@ -23,10 +23,17 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.ComposeView
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.example.safeticketsappcompose.R
 
 class RegisterFragment : Fragment() {
+    private lateinit var viewModel: RegisterViewModel
+
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+        viewModel = ViewModelProvider(this).get(RegisterViewModel::class.java)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -87,7 +94,6 @@ class RegisterFragment : Fragment() {
                     modifier = Modifier
                         .width(450.dp)
                         .padding(vertical = 10.dp),
-                    keyboardType = KeyboardType.Phone
                 )
                 CustomStyledTextField(
                     value = phone,
@@ -95,7 +101,8 @@ class RegisterFragment : Fragment() {
                     placeholder = "Телефон",
                     modifier = Modifier
                         .width(450.dp)
-                        .padding(vertical = 10.dp)
+                        .padding(vertical = 10.dp),
+                    keyboardType = KeyboardType.Phone
                 )
                 CustomStyledTextField(
                     value = password,
@@ -117,8 +124,19 @@ class RegisterFragment : Fragment() {
                 )
 
 
-                Button(onClick = { findNavController().navigate(R.id.login_fragment) }) {
-                    Text(text = "Register")
+                Button(onClick = {
+                    if (password == rePassword){
+                        viewModel.username = username
+                        viewModel.email = email
+                        viewModel.password = password
+                        viewModel.name = name
+                        viewModel.lastname = lastname
+                        viewModel.phone = phone
+                        viewModel.registerUser()
+                    }
+                    findNavController().navigate(R.id.login_fragment)
+                }) {
+                    Text(text = "Зарегистрироваться")
                 }
 
             }
@@ -128,7 +146,7 @@ class RegisterFragment : Fragment() {
     }
 
     override fun onResume() {
-        (getActivity() as AppCompatActivity)?.getSupportActionBar()?.hide()
+        (getActivity() as AppCompatActivity).getSupportActionBar()?.hide()
         super.onResume()
     }
 }

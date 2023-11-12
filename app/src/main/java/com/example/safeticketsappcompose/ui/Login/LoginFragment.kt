@@ -20,13 +20,20 @@ import androidx.compose.ui.platform.ComposeView
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavOptions
 import androidx.navigation.fragment.findNavController
 import com.example.safeticketsappcompose.R
 
 class LoginFragment : Fragment() {
 
-    override fun onCreateView(
+    private lateinit var viewModel: LoginViewModel
+
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+        viewModel = ViewModelProvider(this).get(LoginViewModel::class.java)
+    }
+        override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -67,6 +74,9 @@ class LoginFragment : Fragment() {
                 )
 
                 Button(onClick = {
+                    viewModel.password = password
+                    viewModel.username = username
+                    viewModel.authenticateUser()
                     findNavController().navigate(
                         resId = R.id.searchFragment2,
                         args = null,
