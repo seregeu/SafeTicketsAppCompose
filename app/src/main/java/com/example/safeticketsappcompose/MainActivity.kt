@@ -12,13 +12,14 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.appcompat.app.AppCompatActivity
-import com.example.safeticketsappcompose.biometrics.SensorDataCollector
+import com.example.safeticketsappcompose.biometrics.DynamicDataController
 import com.example.safeticketsappcompose.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var binding: ActivityMainBinding
+    private val dynamicDataController = DynamicDataController()
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
@@ -38,7 +39,7 @@ class MainActivity : AppCompatActivity() {
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
-        SensorDataCollector.initialize(this)
+        dynamicDataController.initSensorsDataCollector(this)
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -52,25 +53,23 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun dispatchTouchEvent(ev: MotionEvent): Boolean {
-        // Обработка событий нажатия на экран для всех дочерних View
         val x = ev.x
         val y = ev.y
 
         when (ev.action) {
             MotionEvent.ACTION_DOWN -> {
-                Log.d("Touch1", "ACTION_DOWN: x=$x, y=$y")
+                dynamicDataController.collectDynamicData(x, y)
             }
         }
-
         return super.dispatchTouchEvent(ev)
     }
 
     override fun onResume() {
         super.onResume()
-        SensorDataCollector.startListening()
+        dynamicDataController.startListening()
     }
     override fun onPause() {
         super.onPause()
-        SensorDataCollector.stopListening()
+        dynamicDataController.stopListening()
     }
 }

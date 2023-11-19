@@ -6,6 +6,7 @@ import android.hardware.SensorEvent
 import android.hardware.SensorEventListener
 import android.hardware.SensorManager
 import android.util.Log
+import com.example.safeticketsappcompose.network.models.DynamicBiometrics
 import kotlin.math.max
 import kotlin.math.min
 import kotlin.math.sqrt
@@ -51,21 +52,36 @@ class SensorDataCollector private constructor(context: Context) : SensorEventLis
         fun stopListening() {
             instance.sensorManager.unregisterListener(instance)
         }
+        fun resetValues() {
+            lastUpdateTime = 0
+            minLightSensor = Float.MAX_VALUE
+            maxLightSensor = Float.MIN_VALUE
+            maxVectorLengthAccelerometer = Float.MIN_VALUE
+            maxVectorLengthMagnetic = Float.MIN_VALUE
+            minVectorLengthAccelerometer = Float.MAX_VALUE
+            minVectorLengthMagnetic = Float.MAX_VALUE
+            for (i in 0 until 3) {
+                accelerometerValues[i] = 0f
+                accelerometerValuesLast[i] = 0f
+                magneticFieldValues[i] = 0f
+                magneticFieldValuesLast[i] = 0f
+            }
+        }
+
+        fun getData(): DynamicBiometrics {
+            return DynamicBiometrics(
+                minDeviceOffset = minVectorLengthMagnetic,
+                maxDeviceOffset = maxVectorLengthMagnetic,
+                minDeviceAcceleration = minVectorLengthAccelerometer,
+                maxDeviceAcceleration = maxVectorLengthAccelerometer,
+                minLight = minLightSensor,
+                maxLight = maxLightSensor
+            )
+            resetValues()
+        }
     }
 
     private val sensorManager: SensorManager = context.getSystemService(Context.SENSOR_SERVICE) as SensorManager
-
-    fun resetValues() {
-        lastUpdateTime = 0
-        minLightSensor = Float.MAX_VALUE
-        maxLightSensor = Float.MIN_VALUE
-        for (i in 0 until 3) {
-            accelerometerValues[i] = 0f
-            accelerometerValuesLast[i] = 0f
-            magneticFieldValues[i] = 0f
-            magneticFieldValuesLast[i] = 0f
-        }
-    }
 
     override fun onSensorChanged(event: SensorEvent) {
         when (event.sensor.type) {
@@ -140,7 +156,6 @@ class SensorDataCollector private constructor(context: Context) : SensorEventLis
         minVectorLengthMagnetic = min(minVectorLengthMagnetic, vectorLengthMagnetic)
 
         Log.d ("vectors", "${maxVectorLengthAccelerometer}, ${minVectorLengthAccelerometer}, ${maxVectorLengthMagnetic}, ${minVectorLengthMagnetic}, ${vectorLengthMagnetic}, ${vectorLengthAccelerometer} ${maxLightSensor} ${minLightSensor}")
-
     }
 }
 
