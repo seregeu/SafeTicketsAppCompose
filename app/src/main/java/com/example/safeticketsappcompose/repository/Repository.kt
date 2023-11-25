@@ -13,5 +13,5 @@ interface Repository {
         email: String,
         phone: String,
         password: String
-    ) : RegisterResponse
+    ): RegisterResponse
 }
