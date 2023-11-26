@@ -13,7 +13,9 @@ import androidx.navigation.ui.setupWithNavController
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.appcompat.app.AppCompatActivity
 import com.example.safeticketsappcompose.biometrics.DynamicDataController
+import com.example.safeticketsappcompose.biometrics.StaticDataController
 import com.example.safeticketsappcompose.databinding.ActivityMainBinding
+import com.example.safeticketsappcompose.network.TokenManager
 
 class MainActivity : AppCompatActivity() {
 
@@ -40,6 +42,8 @@ class MainActivity : AppCompatActivity() {
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
         dynamicDataController.initSensorsDataCollector(this)
+        StaticDataController.initialize(this)
+        TokenManager.initialize(this)
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
