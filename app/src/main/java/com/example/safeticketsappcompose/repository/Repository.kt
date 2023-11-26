@@ -1,7 +1,10 @@
 package com.example.safeticketsappcompose.repository
 
+import com.example.safeticketsappcompose.network.models.CoordinatesData
+import com.example.safeticketsappcompose.network.models.DynamicBiometrics
 import com.example.safeticketsappcompose.network.models.JwtTokenResponse
 import com.example.safeticketsappcompose.network.models.RegisterResponse
+import com.example.safeticketsappcompose.network.models.StaticBiometrics
 
 interface Repository {
     suspend fun login(username: String, password: String): JwtTokenResponse
@@ -14,4 +17,14 @@ interface Repository {
         phone: String,
         password: String
     ): RegisterResponse
+
+    suspend fun sendDynamicParams(dynamicBiometrics: DynamicBiometrics): RegisterResponse
+
+    suspend fun sendCoordinates(coordinatesData: CoordinatesData): RegisterResponse
+
+    suspend fun sendStaticParams(staticBiometrics: StaticBiometrics): RegisterResponse
+
+    fun storeJwtToken(jwtToken: String)
+
+    fun getJwtToken(): String
 }
