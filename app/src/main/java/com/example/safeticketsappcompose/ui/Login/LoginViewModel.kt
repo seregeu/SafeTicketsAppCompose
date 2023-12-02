@@ -2,7 +2,7 @@ package com.example.safeticketsappcompose.ui.Login
 
 import android.util.Log
 import androidx.lifecycle.ViewModel
-import com.example.safeticketsappcompose.network.models.JwtTokenResponse
+import com.example.safeticketsappcompose.models.JwtTokenResponse
 import com.example.safeticketsappcompose.repository.Repository
 import com.example.safeticketsappcompose.repository.RepositoryImpl
 import kotlinx.coroutines.CoroutineScope

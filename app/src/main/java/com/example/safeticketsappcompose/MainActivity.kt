@@ -1,7 +1,6 @@
 package com.example.safeticketsappcompose
 
 import android.os.Bundle
-import android.util.Log
 import android.view.Menu
 import android.view.MotionEvent
 import com.google.android.material.navigation.NavigationView
@@ -34,7 +33,7 @@ class MainActivity : AppCompatActivity() {
         val navController = findNavController(R.id.nav_host_fragment_content_main)
         appBarConfiguration = AppBarConfiguration(
             setOf(
-                R.id.login_fragment,R.id.searchFragment2, R.id.nav_gallery, R.id.nav_slideshow
+                R.id.login_fragment,R.id.searchFragment2, R.id.nav_tickets, R.id.nav_slideshow
             ), drawerLayout
         )
         setupActionBarWithNavController(navController, appBarConfiguration)

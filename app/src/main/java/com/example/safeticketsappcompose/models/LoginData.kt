@@ -1,4 +1,4 @@
-package com.example.safeticketsappcompose.network.models
+package com.example.safeticketsappcompose.models
 
 data class LoginData(
     val username: String,

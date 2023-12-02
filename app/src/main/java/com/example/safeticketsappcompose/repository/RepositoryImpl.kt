@@ -2,10 +2,10 @@ package com.example.safeticketsappcompose.repository
 
 import android.util.Log
 import com.example.safeticketsappcompose.network.NetworkClient
-import com.example.safeticketsappcompose.network.models.JwtTokenResponse
-import com.example.safeticketsappcompose.network.models.LoginData
-import com.example.safeticketsappcompose.network.models.RegisterData
-import com.example.safeticketsappcompose.network.models.RegisterResponse
+import com.example.safeticketsappcompose.models.JwtTokenResponse
+import com.example.safeticketsappcompose.models.LoginData
+import com.example.safeticketsappcompose.models.RegisterData
+import com.example.safeticketsappcompose.models.RegisterResponse
 import retrofit2.HttpException
 
 class RepositoryImpl : Repository {
@@ -63,6 +63,21 @@ class RepositoryImpl : Repository {
         } catch (e: Throwable) {
             Log.d("loginUser", "Ooops: Something else went wrong")
             throw e
+        }
+    }
+
+    override suspend fun searchTickets() {
+        try {
+            val response = service.searchTickets()
+        } catch (e: HttpException) {
+        }
+    }
+
+    override suspend fun buyTicket() {
+        try {
+            val response = service.buyTickets()
+        } catch (e: HttpException) {
+
         }
     }
 }

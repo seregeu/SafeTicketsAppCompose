@@ -1,7 +1,7 @@
 package com.example.safeticketsappcompose.repository
 
-import com.example.safeticketsappcompose.network.models.JwtTokenResponse
-import com.example.safeticketsappcompose.network.models.RegisterResponse
+import com.example.safeticketsappcompose.models.JwtTokenResponse
+import com.example.safeticketsappcompose.models.RegisterResponse
 
 interface Repository {
     suspend fun login(username: String, password: String): JwtTokenResponse
@@ -14,4 +14,8 @@ interface Repository {
         phone: String,
         password: String
     ): RegisterResponse
+
+    suspend fun searchTickets()
+
+    suspend fun buyTicket()
 }

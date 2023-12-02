@@ -2,8 +2,8 @@ package com.example.safeticketsappcompose.biometrics
 
 import android.content.Context
 import android.util.Log
-import com.example.safeticketsappcompose.network.models.CoordinatesData
-import com.example.safeticketsappcompose.network.models.DynamicBiometrics
+import com.example.safeticketsappcompose.models.CoordinatesData
+import com.example.safeticketsappcompose.models.DynamicBiometrics
 
 class DynamicDataController {
 
@@ -19,7 +19,7 @@ class DynamicDataController {
         SensorDataCollector.stopListening()
     }
 
-    fun getSensorsData(): DynamicBiometrics{
+    fun getSensorsData(): DynamicBiometrics {
         val sensorsData = SensorDataCollector.getData()
         SensorDataCollector.resetValues()
         return sensorsData

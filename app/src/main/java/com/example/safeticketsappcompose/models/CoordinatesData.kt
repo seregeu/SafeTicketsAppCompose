@@ -1,4 +1,4 @@
-package com.example.safeticketsappcompose.network.models
+package com.example.safeticketsappcompose.models
 
 class CoordinatesData(
     val hitX: Float,

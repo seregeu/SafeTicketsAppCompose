@@ -2,7 +2,7 @@ package com.example.safeticketsappcompose.ui.Register
 
 import android.util.Log
 import androidx.lifecycle.ViewModel
-import com.example.safeticketsappcompose.network.models.RegisterResponse
+import com.example.safeticketsappcompose.models.RegisterResponse
 import com.example.safeticketsappcompose.repository.Repository
 import com.example.safeticketsappcompose.repository.RepositoryImpl
 import kotlinx.coroutines.CoroutineScope
