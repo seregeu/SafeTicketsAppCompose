@@ -1,4 +1,4 @@
-package com.example.safeticketsappcompose.network.models
+package com.example.safeticketsappcompose.models
 
 import com.google.gson.annotations.SerializedName
 

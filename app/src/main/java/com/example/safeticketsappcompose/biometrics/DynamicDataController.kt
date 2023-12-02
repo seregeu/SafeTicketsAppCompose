@@ -2,9 +2,9 @@ package com.example.safeticketsappcompose.biometrics
 
 import android.content.Context
 import android.util.Log
+import com.example.safeticketsappcompose.models.CoordinatesData
+import com.example.safeticketsappcompose.models.DynamicBiometrics
 import com.example.safeticketsappcompose.network.NetworkClient
-import com.example.safeticketsappcompose.network.models.CoordinatesData
-import com.example.safeticketsappcompose.network.models.DynamicBiometrics
 import com.example.safeticketsappcompose.repository.Repository
 import com.example.safeticketsappcompose.repository.RepositoryImpl
 import kotlinx.coroutines.CoroutineScope
@@ -27,7 +27,7 @@ class DynamicDataController {
         SensorDataCollector.stopListening()
     }
 
-    fun getSensorsData(): DynamicBiometrics{
+    fun getSensorsData(): DynamicBiometrics {
         val sensorsData = SensorDataCollector.getData()
         SensorDataCollector.resetValues()
         return sensorsData

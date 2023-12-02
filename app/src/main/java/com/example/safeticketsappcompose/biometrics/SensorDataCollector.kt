@@ -6,7 +6,7 @@ import android.hardware.SensorEvent
 import android.hardware.SensorEventListener
 import android.hardware.SensorManager
 import android.util.Log
-import com.example.safeticketsappcompose.network.models.DynamicBiometrics
+import com.example.safeticketsappcompose.models.DynamicBiometrics
 import kotlin.math.max
 import kotlin.math.min
 import kotlin.math.sqrt

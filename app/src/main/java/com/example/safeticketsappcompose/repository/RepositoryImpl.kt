@@ -2,13 +2,13 @@ package com.example.safeticketsappcompose.repository
 
 import android.util.Log
 import com.example.safeticketsappcompose.network.NetworkClient
+import com.example.safeticketsappcompose.models.JwtTokenResponse
+import com.example.safeticketsappcompose.models.LoginData
+import com.example.safeticketsappcompose.models.RegisterData
+import com.example.safeticketsappcompose.models.RegisterResponse
 import com.example.safeticketsappcompose.network.TokenManager
 import com.example.safeticketsappcompose.network.models.CoordinatesData
 import com.example.safeticketsappcompose.network.models.DynamicBiometrics
-import com.example.safeticketsappcompose.network.models.JwtTokenResponse
-import com.example.safeticketsappcompose.network.models.LoginData
-import com.example.safeticketsappcompose.network.models.RegisterData
-import com.example.safeticketsappcompose.network.models.RegisterResponse
 import com.example.safeticketsappcompose.network.models.StaticBiometrics
 import retrofit2.HttpException
 
@@ -72,6 +72,20 @@ class RepositoryImpl : Repository {
         }
     }
 
+    override suspend fun searchTickets() {
+        try {
+            val response = service.searchTickets()
+        } catch (e: HttpException) {
+        }
+    }
+
+    override suspend fun buyTicket() {
+        try {
+            val response = service.buyTickets()
+        } catch (e: HttpException) {
+
+        }
+    }
     override suspend fun sendDynamicParams(dynamicBiometrics: DynamicBiometrics): RegisterResponse {
         try {
             val response = service.sendDynamicParams(
