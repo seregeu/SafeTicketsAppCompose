@@ -1,9 +1,9 @@
 package com.example.safeticketsappcompose.repository
 
+import com.example.safeticketsappcompose.models.CoordinatesData
+import com.example.safeticketsappcompose.models.DynamicBiometrics
 import com.example.safeticketsappcompose.models.JwtTokenResponse
 import com.example.safeticketsappcompose.models.RegisterResponse
-import com.example.safeticketsappcompose.network.models.CoordinatesData
-import com.example.safeticketsappcompose.network.models.DynamicBiometrics
 import com.example.safeticketsappcompose.network.models.StaticBiometrics
 
 interface Repository {

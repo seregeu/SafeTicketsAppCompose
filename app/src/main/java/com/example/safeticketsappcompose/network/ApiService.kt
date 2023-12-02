@@ -1,11 +1,11 @@
 package com.example.safeticketsappcompose.network
 
+import com.example.safeticketsappcompose.models.CoordinatesData
+import com.example.safeticketsappcompose.models.DynamicBiometrics
 import com.example.safeticketsappcompose.models.JwtTokenResponse
 import com.example.safeticketsappcompose.models.LoginData
 import com.example.safeticketsappcompose.models.RegisterData
 import com.example.safeticketsappcompose.models.RegisterResponse
-import com.example.safeticketsappcompose.network.models.CoordinatesData
-import com.example.safeticketsappcompose.network.models.DynamicBiometrics
 import com.example.safeticketsappcompose.network.models.StaticBiometrics
 import retrofit2.Response
 import retrofit2.http.*
